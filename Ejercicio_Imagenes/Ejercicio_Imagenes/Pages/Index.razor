@@ -1,0 +1,17 @@
+﻿@page "/"
+@inject IJSRuntime js
+
+
+
+<h1>Ejercicio de imágenes!</h1>
+
+<label for="txtImg">Url de la imágen:</label>
+<input @bind="UrlImagen" />
+<br />
+<Img UrlImagen="@UrlImagen" />
+
+
+
+@code{
+    public string UrlImagen { get; set; }
+}

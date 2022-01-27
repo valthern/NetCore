@@ -1,0 +1,4 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="C:\Users\Omar\source\ejemplos\_Prueba_BlazorInvocarJSDesdeCSharp\_Prueba_BlazorInvocarJSDesdeCSharp\bin\Debug\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="C:\Users\Omar\source\ejemplos\_Prueba_BlazorInvocarJSDesdeCSharp\_Prueba_BlazorInvocarJSDesdeCSharp\obj\Debug\net5.0\scopedcss\bundle\" />
+</StaticWebAssets>

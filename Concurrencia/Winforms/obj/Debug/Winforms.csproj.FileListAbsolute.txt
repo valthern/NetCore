@@ -1,0 +1,10 @@
+C:\Users\Omar\source\repos\Concurrencia\Winforms\bin\Debug\Winforms.exe.config
+C:\Users\Omar\source\repos\Concurrencia\Winforms\bin\Debug\Winforms.exe
+C:\Users\Omar\source\repos\Concurrencia\Winforms\bin\Debug\Winforms.pdb
+C:\Users\Omar\source\repos\Concurrencia\Winforms\obj\Debug\Winforms.csproj.AssemblyReference.cache
+C:\Users\Omar\source\repos\Concurrencia\Winforms\obj\Debug\Winforms.Form1.resources
+C:\Users\Omar\source\repos\Concurrencia\Winforms\obj\Debug\Winforms.Properties.Resources.resources
+C:\Users\Omar\source\repos\Concurrencia\Winforms\obj\Debug\Winforms.csproj.GenerateResource.cache
+C:\Users\Omar\source\repos\Concurrencia\Winforms\obj\Debug\Winforms.csproj.CoreCompileInputs.cache
+C:\Users\Omar\source\repos\Concurrencia\Winforms\obj\Debug\Winforms.exe
+C:\Users\Omar\source\repos\Concurrencia\Winforms\obj\Debug\Winforms.pdb
