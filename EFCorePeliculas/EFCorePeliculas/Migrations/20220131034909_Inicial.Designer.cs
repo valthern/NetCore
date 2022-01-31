@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCorePeliculas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220128041235_Inicial")]
+    [Migration("20220131034909_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,8 +35,8 @@ namespace EFCorePeliculas.Migrations
                     b.Property<string>("Biografia")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("FechaNacimiento")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime?>("FechaNacimiento")
+                        .HasColumnType("date");
 
                     b.Property<string>("Nombre")
                         .IsRequired()

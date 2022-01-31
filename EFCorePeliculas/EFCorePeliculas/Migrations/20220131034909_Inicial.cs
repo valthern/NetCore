@@ -17,7 +17,7 @@ namespace EFCorePeliculas.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Biografia = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    FechaNacimiento = table.Column<DateTime>(type: "date", nullable: true)
                 },
                 constraints: table =>
                 {
