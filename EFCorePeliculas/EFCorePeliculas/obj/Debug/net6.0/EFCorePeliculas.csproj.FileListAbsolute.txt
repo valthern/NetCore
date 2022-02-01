@@ -122,3 +122,7 @@ C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\NetTopologySuite.dll
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\NetTopologySuite.IO.SqlServerBytes.dll
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\obj\Debug\net6.0\EFCoreSqlServerNetTopologySuite.cs
+C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
+C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\NetTopologySuite.dll
+C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\NetTopologySuite.IO.SqlServerBytes.dll
+C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\obj\Debug\net6.0\EFCoreSqlServerNetTopologySuite.cs
