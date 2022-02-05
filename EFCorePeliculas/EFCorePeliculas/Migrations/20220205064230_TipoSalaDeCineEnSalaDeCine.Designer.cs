@@ -4,6 +4,7 @@ using EFCorePeliculas;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 
@@ -12,9 +13,10 @@ using NetTopologySuite.Geometries;
 namespace EFCorePeliculas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220205064230_TipoSalaDeCineEnSalaDeCine")]
+    partial class TipoSalaDeCineEnSalaDeCine
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,36 +173,6 @@ namespace EFCorePeliculas.Migrations
                     b.ToTable("SalasDeCine");
                 });
 
-            modelBuilder.Entity("GeneroPelicula", b =>
-                {
-                    b.Property<int>("GenerosIdentificador")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PeliculasId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GenerosIdentificador", "PeliculasId");
-
-                    b.HasIndex("PeliculasId");
-
-                    b.ToTable("GeneroPelicula");
-                });
-
-            modelBuilder.Entity("PeliculaSalaDeCine", b =>
-                {
-                    b.Property<int>("PeliculasId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SalasDeCineId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PeliculasId", "SalasDeCineId");
-
-                    b.HasIndex("SalasDeCineId");
-
-                    b.ToTable("PeliculaSalaDeCine");
-                });
-
             modelBuilder.Entity("EFCorePeliculas.Entidades.CineOferta", b =>
                 {
                     b.HasOne("EFCorePeliculas.Entidades.Cine", null)
@@ -219,36 +191,6 @@ namespace EFCorePeliculas.Migrations
                         .IsRequired();
 
                     b.Navigation("Cine");
-                });
-
-            modelBuilder.Entity("GeneroPelicula", b =>
-                {
-                    b.HasOne("EFCorePeliculas.Entidades.Genero", null)
-                        .WithMany()
-                        .HasForeignKey("GenerosIdentificador")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EFCorePeliculas.Entidades.Pelicula", null)
-                        .WithMany()
-                        .HasForeignKey("PeliculasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PeliculaSalaDeCine", b =>
-                {
-                    b.HasOne("EFCorePeliculas.Entidades.Pelicula", null)
-                        .WithMany()
-                        .HasForeignKey("PeliculasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EFCorePeliculas.Entidades.SalaDeCine", null)
-                        .WithMany()
-                        .HasForeignKey("SalasDeCineId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("EFCorePeliculas.Entidades.Cine", b =>

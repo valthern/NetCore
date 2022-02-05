@@ -63,5 +63,4 @@ namespace EFCorePeliculas
         public DbSet<SalaDeCine> SalasDeCine { get; set; }
         public DbSet<Pelicula> Peliculas { get; set; }
     }
-
 }

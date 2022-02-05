@@ -13,8 +13,8 @@ using NetTopologySuite.Geometries;
 namespace EFCorePeliculas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220201045749_TipoSalaDeCineEnSalaDeCine")]
-    partial class TipoSalaDeCineEnSalaDeCine
+    [Migration("20220205065057_PeliculasGeneros")]
+    partial class PeliculasGeneros
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -162,13 +162,30 @@ namespace EFCorePeliculas.Migrations
                         .HasColumnType("decimal(9,2)");
 
                     b.Property<int>("TipoSalaDeCine")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.HasKey("Id");
 
                     b.HasIndex("CineId");
 
                     b.ToTable("SalasDeCine");
+                });
+
+            modelBuilder.Entity("GeneroPelicula", b =>
+                {
+                    b.Property<int>("GenerosIdentificador")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PeliculasId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GenerosIdentificador", "PeliculasId");
+
+                    b.HasIndex("PeliculasId");
+
+                    b.ToTable("GeneroPelicula");
                 });
 
             modelBuilder.Entity("EFCorePeliculas.Entidades.CineOferta", b =>
@@ -189,6 +206,21 @@ namespace EFCorePeliculas.Migrations
                         .IsRequired();
 
                     b.Navigation("Cine");
+                });
+
+            modelBuilder.Entity("GeneroPelicula", b =>
+                {
+                    b.HasOne("EFCorePeliculas.Entidades.Genero", null)
+                        .WithMany()
+                        .HasForeignKey("GenerosIdentificador")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EFCorePeliculas.Entidades.Pelicula", null)
+                        .WithMany()
+                        .HasForeignKey("PeliculasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EFCorePeliculas.Entidades.Cine", b =>
