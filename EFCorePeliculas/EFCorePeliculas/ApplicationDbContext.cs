@@ -1,4 +1,5 @@
 ﻿using EFCorePeliculas.Entidades;
+using EFCorePeliculas.Entidades.Configuraciones;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFCorePeliculas
@@ -7,24 +8,21 @@ namespace EFCorePeliculas
     {
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder) => configurationBuilder.Properties<DateTime>().HaveColumnType("date");
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             // Genero
-            modelBuilder.Entity<Genero>().HasKey(g => g.Identificador);
-            modelBuilder.Entity<Genero>().Property(g => g.Nombre)
-                //.HasColumnName("NombreGenero")
-                .HasMaxLength(150)
-                .IsRequired();
-            //modelBuilder.Entity<Genero>().ToTable(name: "TablaGeneros", schema: "Peliculas");
+            modelBuilder.ApplyConfiguration(new GeneroConfig());
 
             // Actor
             modelBuilder.Entity<Actor>().Property(a => a.Nombre)
                 .HasMaxLength(150)
                 .IsRequired();
-            modelBuilder.Entity<Actor>().Property(a => a.FechaNacimiento)
-                .HasColumnType("date");
+            //modelBuilder.Entity<Actor>().Property(a => a.FechaNacimiento)
+            //    .HasColumnType("date");
 
             // Cine
             modelBuilder.Entity<Cine>().Property(c => c.Nombre)
@@ -32,17 +30,17 @@ namespace EFCorePeliculas
                 .IsRequired();
 
             // SalaDeCine
-            modelBuilder.Entity<SalaDeCine>().Property(c => c.Precio)
+            modelBuilder.Entity<SalaDeCine>().Property(sc => sc.Precio)
                 .HasPrecision(9, 2);
-            modelBuilder.Entity<SalaDeCine>().Property(c => c.TipoSalaDeCine)
+            modelBuilder.Entity<SalaDeCine>().Property(sc => sc.TipoSalaDeCine)
                 .HasDefaultValue(TipoSalaDeCine.DosDimensiones);
 
             // Pelicula
             modelBuilder.Entity<Pelicula>().Property(p => p.Titulo)
                 .HasMaxLength(250)
                 .IsRequired();
-            modelBuilder.Entity<Pelicula>().Property(p => p.FechaEstreno)
-                .HasColumnType("date");
+            //modelBuilder.Entity<Pelicula>().Property(p => p.FechaEstreno)
+            //    .HasColumnType("date");
             modelBuilder.Entity<Pelicula>().Property(p => p.PosterURL)
                 .HasMaxLength(500)
                 .IsUnicode(false);
@@ -50,10 +48,15 @@ namespace EFCorePeliculas
             // CineOferta
             modelBuilder.Entity<CineOferta>().Property(co => co.PorcentajeDescuento)
                 .HasPrecision(5, 2);
-            modelBuilder.Entity<CineOferta>().Property(co => co.FechaInicio)
-                .HasColumnType("date");
-            modelBuilder.Entity<CineOferta>().Property(co => co.FechaFin)
-                .HasColumnType("date");
+            //modelBuilder.Entity<CineOferta>().Property(co => co.FechaInicio)
+            //    .HasColumnType("date");
+            //modelBuilder.Entity<CineOferta>().Property(co => co.FechaFin)
+            //    .HasColumnType("date");
+
+            // PeliculaActor
+            modelBuilder.Entity<PeliculaActor>().HasKey(pa => new { pa.PeliculaId, pa.ActorId });
+            modelBuilder.Entity<PeliculaActor>().Property(pa => pa.Personaje)
+                .HasMaxLength(150);
         }
         
         public DbSet<Genero> Generos { get; set; }
@@ -62,5 +65,6 @@ namespace EFCorePeliculas
         public DbSet<CineOferta> CinesOfertas { get; set; }
         public DbSet<SalaDeCine> SalasDeCine { get; set; }
         public DbSet<Pelicula> Peliculas { get; set; }
+        public DbSet<PeliculaActor> PeliculasActores { get; set; }
     }
 }
