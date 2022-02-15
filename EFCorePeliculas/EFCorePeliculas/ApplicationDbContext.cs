@@ -18,45 +18,22 @@ namespace EFCorePeliculas
             modelBuilder.ApplyConfiguration(new GeneroConfig());
 
             // Actor
-            modelBuilder.Entity<Actor>().Property(a => a.Nombre)
-                .HasMaxLength(150)
-                .IsRequired();
-            //modelBuilder.Entity<Actor>().Property(a => a.FechaNacimiento)
-            //    .HasColumnType("date");
+            modelBuilder.ApplyConfiguration(new ActorConfig());
 
             // Cine
-            modelBuilder.Entity<Cine>().Property(c => c.Nombre)
-                .HasMaxLength(150)
-                .IsRequired();
+            modelBuilder.ApplyConfiguration(new CineConfig());
 
             // SalaDeCine
-            modelBuilder.Entity<SalaDeCine>().Property(sc => sc.Precio)
-                .HasPrecision(9, 2);
-            modelBuilder.Entity<SalaDeCine>().Property(sc => sc.TipoSalaDeCine)
-                .HasDefaultValue(TipoSalaDeCine.DosDimensiones);
+            modelBuilder.ApplyConfiguration(new SalaDeCineConfig());
 
             // Pelicula
-            modelBuilder.Entity<Pelicula>().Property(p => p.Titulo)
-                .HasMaxLength(250)
-                .IsRequired();
-            //modelBuilder.Entity<Pelicula>().Property(p => p.FechaEstreno)
-            //    .HasColumnType("date");
-            modelBuilder.Entity<Pelicula>().Property(p => p.PosterURL)
-                .HasMaxLength(500)
-                .IsUnicode(false);
+            modelBuilder.ApplyConfiguration(new PeliculaConfig());
 
             // CineOferta
-            modelBuilder.Entity<CineOferta>().Property(co => co.PorcentajeDescuento)
-                .HasPrecision(5, 2);
-            //modelBuilder.Entity<CineOferta>().Property(co => co.FechaInicio)
-            //    .HasColumnType("date");
-            //modelBuilder.Entity<CineOferta>().Property(co => co.FechaFin)
-            //    .HasColumnType("date");
+            modelBuilder.ApplyConfiguration(new CineOfertaConfig());
 
             // PeliculaActor
-            modelBuilder.Entity<PeliculaActor>().HasKey(pa => new { pa.PeliculaId, pa.ActorId });
-            modelBuilder.Entity<PeliculaActor>().Property(pa => pa.Personaje)
-                .HasMaxLength(150);
+            modelBuilder.ApplyConfiguration(new PeliculaActorConfig());
         }
         
         public DbSet<Genero> Generos { get; set; }
