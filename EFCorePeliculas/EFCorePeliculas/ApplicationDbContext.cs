@@ -1,6 +1,7 @@
 ﻿using EFCorePeliculas.Entidades;
 using EFCorePeliculas.Entidades.Configuraciones;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace EFCorePeliculas
 {
@@ -14,26 +15,22 @@ namespace EFCorePeliculas
         {
             base.OnModelCreating(modelBuilder);
 
-            // Genero
-            modelBuilder.ApplyConfiguration(new GeneroConfig());
+            //// Genero
+            //modelBuilder.ApplyConfiguration(new GeneroConfig());
+            //// Actor
+            //modelBuilder.ApplyConfiguration(new ActorConfig());
+            //// Cine
+            //modelBuilder.ApplyConfiguration(new CineConfig());
+            //// SalaDeCine
+            //modelBuilder.ApplyConfiguration(new SalaDeCineConfig());
+            //// Pelicula
+            //modelBuilder.ApplyConfiguration(new PeliculaConfig());
+            //// CineOferta
+            //modelBuilder.ApplyConfiguration(new CineOfertaConfig());
+            //// PeliculaActor
+            //modelBuilder.ApplyConfiguration(new PeliculaActorConfig());
 
-            // Actor
-            modelBuilder.ApplyConfiguration(new ActorConfig());
-
-            // Cine
-            modelBuilder.ApplyConfiguration(new CineConfig());
-
-            // SalaDeCine
-            modelBuilder.ApplyConfiguration(new SalaDeCineConfig());
-
-            // Pelicula
-            modelBuilder.ApplyConfiguration(new PeliculaConfig());
-
-            // CineOferta
-            modelBuilder.ApplyConfiguration(new CineOfertaConfig());
-
-            // PeliculaActor
-            modelBuilder.ApplyConfiguration(new PeliculaActorConfig());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
         
         public DbSet<Genero> Generos { get; set; }
