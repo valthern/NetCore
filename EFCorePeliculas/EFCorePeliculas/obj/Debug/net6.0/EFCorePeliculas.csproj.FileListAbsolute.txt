@@ -4,7 +4,6 @@ C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debu
 C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\EFCorePeliculas.deps.json
 C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\EFCorePeliculas.runtimeconfig.json
 C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\EFCorePeliculas.dll
-C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\ref\EFCorePeliculas.dll
 C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\EFCorePeliculas.pdb
 C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\Humanizer.dll
 C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
@@ -126,3 +125,4 @@ C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debu
 C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\NetTopologySuite.IO.SqlServerBytes.dll
 C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\obj\Debug\net6.0\EFCoreSqlServerNetTopologySuite.cs
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\obj\Debug\net6.0\refint\EFCorePeliculas.dll
+C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\obj\Debug\net6.0\refint\EFCorePeliculas.dll
