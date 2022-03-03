@@ -18,7 +18,14 @@ namespace EFCorePeliculas.Controllers
         [HttpGet]
         public async Task<IEnumerable<Genero>> Get()
         {
-            return await context.Generos.AsNoTracking().ToListAsync();
+            //return await context.Generos.AsNoTracking().ToListAsync();
+            return await context.Generos.ToListAsync();
+        }
+
+        [HttpGet("primer")]
+        public async Task<Genero> Primer()
+        {
+            return await context.Generos.FirstAsync(g => g.Nombre.StartsWith("C"));
         }
     }
 }
