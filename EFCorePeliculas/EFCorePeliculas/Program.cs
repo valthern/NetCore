@@ -11,7 +11,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 //var connectionString = builder.Configuration.GetConnectionString("LATITUDE3540Connection");
-builder.Services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlServer(connectionString, sqlServer => sqlServer.UseNetTopologySuite()));
+builder.Services.AddDbContext<ApplicationDbContext>(opciones =>
+{
+    opciones.UseSqlServer(connectionString, sqlServer => sqlServer.UseNetTopologySuite());
+    opciones.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+});
 
 var app = builder.Build();
 
