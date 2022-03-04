@@ -23,10 +23,23 @@ namespace EFCorePeliculas.Controllers
             //return await context.Generos.AsTracking().ToListAsync();
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<Genero>> Get(int id)
+        {
+            var genero = await context.Generos.FirstOrDefaultAsync(g => g.Identificador == id);
+
+            if (genero is null)
+            {
+                return NotFound();
+            }
+
+            return genero;
+        }
+
         [HttpGet("primer")]
         public async Task<ActionResult<Genero>> Primer()
         {
-            var genero = await context.Generos.FirstOrDefaultAsync(g => g.Nombre.StartsWith("Z"));
+            var genero = await context.Generos.FirstOrDefaultAsync(g => g.Nombre.StartsWith("C"));
 
             if (genero is null)
             {
