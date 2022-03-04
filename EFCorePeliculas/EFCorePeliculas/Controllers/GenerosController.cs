@@ -20,12 +20,20 @@ namespace EFCorePeliculas.Controllers
         {
             //return await context.Generos.AsNoTracking().ToListAsync();
             return await context.Generos.ToListAsync();
+            //return await context.Generos.AsTracking().ToListAsync();
         }
 
         [HttpGet("primer")]
-        public async Task<Genero> Primer()
+        public async Task<ActionResult<Genero>> Primer()
         {
-            return await context.Generos.FirstAsync(g => g.Nombre.StartsWith("C"));
+            var genero = await context.Generos.FirstOrDefaultAsync(g => g.Nombre.StartsWith("Z"));
+
+            if (genero is null)
+            {
+                return NotFound();
+            }
+
+            return genero;
         }
     }
 }
