@@ -52,7 +52,10 @@ namespace EFCorePeliculas.Controllers
         [HttpGet("filtrar")]
         public async Task<IEnumerable<Genero>> Filtrar(string nombre)
         {
-            return await context.Generos.Where(g => g.Nombre.Contains(nombre)).ToListAsync();
+            return await context.Generos
+                .Where(g => g.Nombre.Contains(nombre))
+                .OrderBy(g => g.Nombre)
+                .ToListAsync();
         }
     }
 }
