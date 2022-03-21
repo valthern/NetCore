@@ -19,7 +19,7 @@ namespace EFCorePeliculas.Controllers
         public async Task<IEnumerable<Genero>> Get()
         {
             //return await context.Generos.AsNoTracking().ToListAsync();
-            return await context.Generos.ToListAsync();
+            return await context.Generos.OrderBy(g => g.Nombre).ToListAsync();
             //return await context.Generos.AsTracking().ToListAsync();
         }
 
@@ -54,8 +54,19 @@ namespace EFCorePeliculas.Controllers
         {
             return await context.Generos
                 .Where(g => g.Nombre.Contains(nombre))
-                .OrderBy(g => g.Nombre)
+                .OrderByDescending(g => g.Nombre)
                 .ToListAsync();
+        }
+
+        [HttpGet("paginacion")]
+        public async Task<ActionResult<IEnumerable<Genero>>> GetPaginacion(int pagina = 1)
+        {
+            var cantidadRegistrosPorPagina = 2;
+            var generos = await context.Generos
+                .Skip((pagina - 1) * cantidadRegistrosPorPagina)
+                .Take(cantidadRegistrosPorPagina)
+                .ToListAsync();
+            return generos;
         }
     }
 }
