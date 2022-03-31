@@ -128,3 +128,5 @@ C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\obj\Debug\net
 C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\obj\Debug\net6.0\refint\EFCorePeliculas.dll
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\imartinez\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

@@ -4,11 +4,15 @@ using EFCorePeliculas.Entidades;
 
 namespace EFCorePeliculas.Servicios
 {
-    public class AutoMapperProfiles:Profile
+    public class AutoMapperProfiles : Profile
     {
         public AutoMapperProfiles()
         {
             CreateMap<Actor, ActorDTO>();
+
+            CreateMap<Cine, CineDTO>()
+                .ForMember(dto => dto.Latitud, ent => ent.MapFrom(prop => prop.Ubicacion.Y))
+                .ForMember(dto => dto.longitud, ent => ent.MapFrom(prop => prop.Ubicacion.X));
         }
     }
 }
