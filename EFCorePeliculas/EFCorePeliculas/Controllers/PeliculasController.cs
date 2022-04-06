@@ -18,6 +18,8 @@ namespace EFCorePeliculas.Controllers
         {
             var pelicula = await context.Peliculas
                 .Include(p => p.Generos)
+                .Include(p => p.SalasDeCine)
+                    .ThenInclude(s => s.Cine)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (pelicula is null)
