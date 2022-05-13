@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using EFCorePeliculas.DTOs;
 using EFCorePeliculas.Entidades;
 using Microsoft.AspNetCore.Mvc;
@@ -42,21 +43,15 @@ namespace EFCorePeliculas.Controllers
         public async Task<ActionResult<PeliculaDTO>> GetProjectTo(int id)
         {
             var pelicula = await context.Peliculas
-                .Include(p => p.Generos.OrderByDescending(g => g.Nombre))
-                .Include(p => p.SalasDeCine)
-                    .ThenInclude(s => s.Cine)
-                .Include(p => p.PeliculasActores.Where(pa => pa.Actor.FechaNacimiento.Value.Year >= 1980))
-                    .ThenInclude(pa => pa.Actor)
+                .ProjectTo<PeliculaDTO>(mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (pelicula is null)
                 return NotFound();
 
-            var peliculaDTO = mapper.Map<PeliculaDTO>(pelicula);
+            pelicula.Cines = pelicula.Cines.DistinctBy(c => c.Id).ToList();
 
-            peliculaDTO.Cines = peliculaDTO.Cines.DistinctBy(c => c.Id).ToList();
-
-            return peliculaDTO;
+            return pelicula;
         }
     }
 }
