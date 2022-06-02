@@ -6,7 +6,7 @@
         public TipoSalaDeCine TipoSalaDeCine { get; set; }
         public decimal Precio { get; set; }
         public int CineId { get; set; }
-        public Cine Cine { get; set; }
-        public HashSet<Pelicula> Peliculas { get; set; }
+        public virtual Cine Cine { get; set; }
+        public virtual HashSet<Pelicula> Peliculas { get; set; }
     }
 }
