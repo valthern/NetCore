@@ -66,7 +66,7 @@ namespace EFCorePeliculas.Controllers
                 CantidadCines = p.SalasDeCine.Select(s => s.CineId).Distinct().Count()
             }).FirstOrDefaultAsync(p => p.Id == id);
 
-            if(pelicula is null) return NotFound();
+            if (pelicula is null) return NotFound();
 
             return Ok(pelicula);
         }
@@ -80,7 +80,7 @@ namespace EFCorePeliculas.Controllers
             //await context.Entry(pelicula).Collection(p => p.Generos).LoadAsync();
             var cantidadGeneros = await context.Entry(pelicula).Collection(p => p.Generos).Query().CountAsync();
 
-            if(pelicula is null) return NotFound();
+            if (pelicula is null) return NotFound();
 
             var peliculaDTO = mapper.Map<PeliculaDTO>(pelicula);
 
@@ -92,11 +92,54 @@ namespace EFCorePeliculas.Controllers
         {
             var pelicula = await context.Peliculas.AsTracking().FirstOrDefaultAsync(p => p.Id == id);
 
-            if(pelicula is null) return NotFound();
+            if (pelicula is null) return NotFound();
 
-            var peliculaDTO=mapper.Map<PeliculaDTO>(pelicula);
-            peliculaDTO.Cines=peliculaDTO.Cines.DistinctBy(x=>x.Id).ToList();
+            var peliculaDTO = mapper.Map<PeliculaDTO>(pelicula);
+            peliculaDTO.Cines = peliculaDTO.Cines.DistinctBy(x => x.Id).ToList();
             return peliculaDTO;
+        }
+
+        [HttpGet("agrupadasPorEstreno")]
+        public async Task<ActionResult> GetAgrupadasPorCartelera()
+        {
+            var peliculasAgrupadas = await context.Peliculas.GroupBy(p => p.EnCartelera)
+                .Select(g => new
+                {
+                    EnCartelera = g.Key,
+                    Conteo = g.Count(),
+                    Peliculas = g.ToList()
+                }).ToListAsync();
+
+            return Ok(peliculasAgrupadas);
+        }
+
+        [HttpGet("agrupadasPorCantidadDeGeneros")]
+        public async Task<ActionResult> GetAgrupadasPorCantidadDeGeneros()
+        {
+            var peliculasAgrupadas = await context.Peliculas.GroupBy(p => p.Generos.Count())
+                .Select(g => new
+                {
+                    Conteo = g.Key,
+                    Titulos = g.Select(x => x.Titulo),
+                    Generos = g.Select(p => p.Generos).SelectMany(gen => gen).Select(g => g.Nombre).Distinct()
+                }).ToListAsync();
+
+            return Ok(peliculasAgrupadas);
+        }
+
+        [HttpGet("filtrar")]
+        public async Task<ActionResult<List<PeliculaDTO>>> Filtrar([FromQuery] PeliculasFiltroDTO peliculasFiltroDTO)
+        {
+            var peliculasQueryable = context.Peliculas.AsQueryable();
+
+            if (!string.IsNullOrEmpty(peliculasFiltroDTO.Titulo))
+            {
+                peliculasQueryable=peliculasQueryable.Where(p=>p.Titulo.Contains(peliculasFiltroDTO.Titulo));
+            }
+
+            var peliculas = await peliculasQueryable.Include(p => p.Generos).ToListAsync();
+
+            return  mapper.Map<List<PeliculaDTO>>(peliculas);
         }
     }
 }
