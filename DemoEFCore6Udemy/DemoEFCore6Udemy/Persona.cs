@@ -8,7 +8,7 @@ namespace DemoEFCore6Udemy
 {
     public class Persona
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public DateTime FechaNacimiento { get; set; }
     }
