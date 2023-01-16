@@ -14,9 +14,19 @@ namespace EFCorePeliculas
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Genero>().HasKey(prop => prop.Identificador);
-            modelBuilder.Entity<Genero>().Property(prop=>prop.Nombre).HasMaxLength(150);
+            //modelBuilder.Entity<Genero>().Property(prop => prop.Nombre).HasColumnName("NombreGenero").HasMaxLength(150).IsRequired();
+            modelBuilder.Entity<Genero>().Property(prop => prop.Nombre).HasMaxLength(150).IsRequired();
+            //modelBuilder.Entity<Genero>().ToTable(name: "TablaGeneros", schema: "Peliculas");
+
+            modelBuilder.Entity<Actor>().Property(prop => prop.Nombre).IsRequired().HasMaxLength(150);
+            modelBuilder.Entity<Actor>().Property(prop => prop.FechaNacimiento).HasColumnType("Date");
+
+            modelBuilder.Entity<Cine>().Property(prop => prop.Nombre).HasMaxLength(150).IsRequired();
+            modelBuilder.Entity<Cine>().Property(prop => prop.Precio).HasPrecision(precision: 9, scale: 2);
         }
 
         public DbSet<Genero> Generos { get; set; }
+        public DbSet<Actor> Actores { get; set; }
+        public DbSet<Cine> Cines { get; set; }
     }
 }
