@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("NecroConnection");
 //var connectionString = builder.Configuration.GetConnectionString("TicDesarrolloConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlServer(connectionString, sqlServer =>sqlServer.UseNetTopologySuite()));
 
 var app = builder.Build();
 
