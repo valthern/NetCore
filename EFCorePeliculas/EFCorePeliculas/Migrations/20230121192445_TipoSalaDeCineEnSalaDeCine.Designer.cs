@@ -13,8 +13,8 @@ using NetTopologySuite.Geometries;
 namespace EFCorePeliculas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230116224924_Peliculas")]
-    partial class Peliculas
+    [Migration("20230121192445_TipoSalaDeCineEnSalaDeCine")]
+    partial class TipoSalaDeCineEnSalaDeCine
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,16 +62,41 @@ namespace EFCorePeliculas.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<decimal>("Precio")
-                        .HasPrecision(9, 2)
-                        .HasColumnType("decimal(9,2)");
-
                     b.Property<Point>("Ubicacion")
                         .HasColumnType("geography");
 
                     b.HasKey("Id");
 
                     b.ToTable("Cines");
+                });
+
+            modelBuilder.Entity("EFCorePeliculas.Entidades.CineOferta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CineId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaFin")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("PorcentajeDescuento")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CineId")
+                        .IsUnique();
+
+                    b.ToTable("CinesOfertas");
                 });
 
             modelBuilder.Entity("EFCorePeliculas.Entidades.Genero", b =>
@@ -119,6 +144,60 @@ namespace EFCorePeliculas.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Peliculas");
+                });
+
+            modelBuilder.Entity("EFCorePeliculas.Entidades.SalaDeCine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CineId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Precio")
+                        .HasPrecision(9, 2)
+                        .HasColumnType("decimal(9,2)");
+
+                    b.Property<int>("TipoSalaDeCine")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CineId");
+
+                    b.ToTable("SalasDeCine");
+                });
+
+            modelBuilder.Entity("EFCorePeliculas.Entidades.CineOferta", b =>
+                {
+                    b.HasOne("EFCorePeliculas.Entidades.Cine", null)
+                        .WithOne("CineOferta")
+                        .HasForeignKey("EFCorePeliculas.Entidades.CineOferta", "CineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EFCorePeliculas.Entidades.SalaDeCine", b =>
+                {
+                    b.HasOne("EFCorePeliculas.Entidades.Cine", "Cine")
+                        .WithMany("SalasDeCine")
+                        .HasForeignKey("CineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cine");
+                });
+
+            modelBuilder.Entity("EFCorePeliculas.Entidades.Cine", b =>
+                {
+                    b.Navigation("CineOferta");
+
+                    b.Navigation("SalasDeCine");
                 });
 #pragma warning restore 612, 618
         }
