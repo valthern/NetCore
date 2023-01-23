@@ -33,6 +33,9 @@ namespace EFCorePeliculas
             modelBuilder.Entity<CineOferta>().Property(prop => prop.PorcentajeDescuento).HasPrecision(precision:5,scale: 2);
             modelBuilder.Entity<CineOferta>().Property(prop=>prop.FechaInicio).HasColumnType("date");
             modelBuilder.Entity<CineOferta>().Property(prop=>prop.FechaFin).HasColumnType("date");
+
+            modelBuilder.Entity<PeliculaActor>().HasKey(prop => new { prop.PeliculaId, prop.ActorId });
+            modelBuilder.Entity<PeliculaActor>().Property(prop => prop.Personaje).HasMaxLength(150);
         }
 
         public DbSet<Genero> Generos { get; set; }
@@ -41,5 +44,6 @@ namespace EFCorePeliculas
         public DbSet<CineOferta> CinesOfertas { get; set; }
         public DbSet<SalaDeCine> SalasDeCine { get; set; }
         public DbSet<Pelicula> Peliculas { get; set; }
+        public HashSet<PeliculaActor> PeliculasActores { get; set; }
     }
 }
