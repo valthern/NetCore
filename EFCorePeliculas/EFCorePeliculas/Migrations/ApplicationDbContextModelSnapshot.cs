@@ -35,7 +35,7 @@ namespace EFCorePeliculas.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("FechaNacimiento")
-                        .HasColumnType("Date");
+                        .HasColumnType("date");
 
                     b.Property<string>("Nombre")
                         .IsRequired()

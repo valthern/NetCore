@@ -1,5 +1,7 @@
 ﻿using EFCorePeliculas.Entidades;
+using EFCorePeliculas.Entidades.Configuraciones;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace EFCorePeliculas
 {
@@ -9,33 +11,18 @@ namespace EFCorePeliculas
         {
         }
 
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            configurationBuilder.Properties<DateTime>().HaveColumnType("date");
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Genero>().HasKey(prop => prop.Identificador);
-            //modelBuilder.Entity<Genero>().Property(prop => prop.Nombre).HasColumnName("NombreGenero").HasMaxLength(150).IsRequired();
-            modelBuilder.Entity<Genero>().Property(prop => prop.Nombre).HasMaxLength(150).IsRequired();
-            //modelBuilder.Entity<Genero>().ToTable(name: "TablaGeneros", schema: "Peliculas");
+            //modelBuilder.ApplyConfiguration(new GeneroConfig());
 
-            modelBuilder.Entity<Actor>().Property(prop => prop.Nombre).IsRequired().HasMaxLength(150);
-            modelBuilder.Entity<Actor>().Property(prop => prop.FechaNacimiento).HasColumnType("Date");
-
-            modelBuilder.Entity<Cine>().Property(prop => prop.Nombre).HasMaxLength(150).IsRequired();
-
-            modelBuilder.Entity<SalaDeCine>().Property(prop => prop.Precio).HasPrecision(precision: 9, scale: 2);
-            modelBuilder.Entity<SalaDeCine>().Property(prop => prop.TipoSalaDeCine).HasDefaultValue(TipoSalaDeCine.DosDimensiones);
-
-            modelBuilder.Entity<Pelicula>().Property(prop => prop.Titulo).HasMaxLength(250).IsRequired();
-            modelBuilder.Entity<Pelicula>().Property(prop => prop.FechaEstreno).HasColumnType("date");
-            modelBuilder.Entity<Pelicula>().Property(prop=>prop.PosterURL).HasMaxLength(500).IsUnicode(false);
-
-            modelBuilder.Entity<CineOferta>().Property(prop => prop.PorcentajeDescuento).HasPrecision(precision:5,scale: 2);
-            modelBuilder.Entity<CineOferta>().Property(prop=>prop.FechaInicio).HasColumnType("date");
-            modelBuilder.Entity<CineOferta>().Property(prop=>prop.FechaFin).HasColumnType("date");
-
-            modelBuilder.Entity<PeliculaActor>().HasKey(prop => new { prop.PeliculaId, prop.ActorId });
-            modelBuilder.Entity<PeliculaActor>().Property(prop => prop.Personaje).HasMaxLength(150);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         public DbSet<Genero> Generos { get; set; }
