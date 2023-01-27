@@ -11,7 +11,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("NecroConnection");
 //var connectionString = builder.Configuration.GetConnectionString("TicDesarrolloConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlServer(connectionString, sqlServer =>sqlServer.UseNetTopologySuite()));
+builder.Services.AddDbContext<ApplicationDbContext>(opciones =>
+    {
+        opciones.UseSqlServer(connectionString, sqlServer => sqlServer.UseNetTopologySuite());
+        opciones.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    }
+    );
 
 var app = builder.Build();
 
