@@ -140,3 +140,5 @@ C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\NetTopologySuite.dll
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\NetTopologySuite.IO.SqlServerBytes.dll
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\obj\Debug\net6.0\EFCoreSqlServerNetTopologySuite.cs
+C:\Users\magno\source\ejemplos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\magno\source\ejemplos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
