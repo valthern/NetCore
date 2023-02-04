@@ -48,5 +48,16 @@ namespace EFCorePeliculas.Controllers
                 .Where(g => g.Nombre.Contains(nombre))
                 .ToListAsync();
         }
+
+        [HttpGet("paginacion")]
+        public async Task<ActionResult<IEnumerable<Genero>>> Filtrar(int pagina = 1)
+        {
+            var cantidadRegistrosPorPagina = 2;
+            var generos = await context.Generos
+                .Skip((pagina - 1) * cantidadRegistrosPorPagina)
+                .Take(cantidadRegistrosPorPagina)
+                .ToListAsync();
+            return generos;
+        }
     }
 }
