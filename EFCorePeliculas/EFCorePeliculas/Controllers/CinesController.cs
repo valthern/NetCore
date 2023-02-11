@@ -33,8 +33,8 @@ namespace EFCorePeliculas.Controllers
         {
             var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
 
-            var miUbicacion = geometryFactory.CreatePoint(new Coordinate(latitud, longitud));
-            var distanciaMaximaEnMetros = 2000;
+            var miUbicacion = geometryFactory.CreatePoint(new Coordinate(longitud, latitud));
+            //var distanciaMaximaEnMetros = 2000;
 
             var cines = await context.Cines
                 .OrderBy(c => c.Ubicacion.Distance(miUbicacion))
