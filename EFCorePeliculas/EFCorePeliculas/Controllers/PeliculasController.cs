@@ -82,5 +82,40 @@ namespace EFCorePeliculas.Controllers
 
             return Ok(pelicula);
         }
+
+        [HttpGet("cargadoexplicito/{id:int}")]
+        public async Task<ActionResult<PeliculaDTO>> GetExplicito(int id)
+        {
+            var pelicula = await context.Peliculas.AsTracking().FirstOrDefaultAsync(p => p.Id == id);
+
+            //await context.Entry(pelicula).Collection(p => p.Generos).LoadAsync();
+
+            var cantidadGeneros = await context.Entry(pelicula).Collection(p => p.Generos).Query().CountAsync();
+
+            if (pelicula is null)
+            {
+                return NotFound();
+            }
+
+            var peliculaDTO = mapper.Map<PeliculaDTO>(pelicula);
+
+            return peliculaDTO;
+        }
+
+        [HttpGet("lazyloading/{id:int}")]
+        public async Task<ActionResult<List<PeliculaDTO>>> GetLazyLoading(int id)
+        {
+            var peliculas = await context.Peliculas.AsTracking().ToListAsync();
+
+            foreach (var pelicula in peliculas)
+            {
+                // cargar los generos de la pelicula
+                // "Problema: n + 1"
+                pelicula.Generos.ToList();
+            }
+
+            var peliculasDTOs = mapper.Map<List<PeliculaDTO>>(peliculas);
+            return peliculasDTOs;
+        }
     }
 }
