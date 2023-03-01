@@ -146,3 +146,5 @@ C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\Castle.Core.dll
 C:\Users\Omar\source\repos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Proxies.dll
+C:\Users\magno\source\ejemplos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\Castle.Core.dll
+C:\Users\magno\source\ejemplos\NetCore\EFCorePeliculas\EFCorePeliculas\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Proxies.dll
