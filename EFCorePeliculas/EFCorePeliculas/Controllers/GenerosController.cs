@@ -41,5 +41,13 @@ namespace EFCorePeliculas.Controllers
             var estatus3 = context.Entry(genero).State;
             return Ok();
         }
+
+        [HttpPost("varios")]
+        public async Task<ActionResult> Post(Genero[] generos)
+        {
+            context.AddRange(generos);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
     }
 }
