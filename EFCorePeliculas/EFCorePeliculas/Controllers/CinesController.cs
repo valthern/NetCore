@@ -65,13 +65,13 @@ namespace EFCorePeliculas.Controllers
                 {
                     new SalaDeCine
                     {
-                        Precio=200,
-                        TipoSalaDeCine=TipoSalaDeCine.DosDimensiones
+                        Precio = 200,
+                        TipoSalaDeCine = TipoSalaDeCine.DosDimensiones
                     },
                     new SalaDeCine
                     {
-                        Precio=350,
-                        TipoSalaDeCine=TipoSalaDeCine.TresDimensiones
+                        Precio = 350,
+                        TipoSalaDeCine = TipoSalaDeCine.TresDimensiones
                     }
                 }
             };
