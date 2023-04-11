@@ -8,7 +8,8 @@ namespace EFCorePeliculas.Entidades.Configuraciones
     {
         public void Configure(EntityTypeBuilder<Actor> builder)
         {
-            builder.Property(prop => prop.Nombre).IsRequired().HasMaxLength(150);
+            builder.Property(prop => prop.Nombre).HasMaxLength(150).IsRequired();
+            builder.Property(x => x.Nombre).HasField("nombre");
         }
     }
 }
